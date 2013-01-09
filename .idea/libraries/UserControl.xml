@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="UserControl">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../out/UserControl.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,6 +1,6 @@
 name: RunsafeEssentialsImporter
 main: no.runsafe.essentialsimport.Plugin
-version: 1.0
+version: 1.0.@BUILD@
 authors: [mortenn]
 depend: [UserControl, WarpDrive]
 description: Plugin to import data from Essentials into runsafe plugins

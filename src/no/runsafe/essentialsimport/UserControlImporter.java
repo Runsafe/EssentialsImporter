@@ -1,6 +1,5 @@
 package no.runsafe.essentialsimport;
 
-import no.runsafe.framework.configuration.ConfigurationEngine;
 import no.runsafe.framework.database.IDatabase;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.RunsafeServer;
@@ -15,9 +14,9 @@ import java.sql.Timestamp;
 
 public class UserControlImporter extends DataImporter
 {
-	public UserControlImporter(IScheduler scheduler, IOutput output, ConfigurationEngine engine, IDatabase database)
+	public UserControlImporter(IScheduler scheduler, IOutput output, IDatabase database)
 	{
-		super(scheduler, output, engine);
+		super(scheduler, output);
 		this.database = database;
 		essentials = new EssentialsFileReader(output);
 	}

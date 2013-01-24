@@ -13,9 +13,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class WarpDriveImporter extends DataImporter
 {
-	public WarpDriveImporter(IScheduler scheduler, IOutput output, ConfigurationEngine engine, RunsafeServer server)
+	public WarpDriveImporter(IScheduler scheduler, IOutput output, RunsafeServer server)
 	{
-		super(scheduler, output, engine);
+		super(scheduler, output);
 		warpRepository = ((RunsafePlugin) server.getPlugin("WarpDrive")).getComponent(WarpRepository.class);
 		essentials = new EssentialsFileReader(output);
 	}

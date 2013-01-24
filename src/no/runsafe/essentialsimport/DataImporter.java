@@ -1,6 +1,5 @@
 package no.runsafe.essentialsimport;
 
-import no.runsafe.framework.configuration.ConfigurationEngine;
 import no.runsafe.framework.configuration.IConfiguration;
 import no.runsafe.framework.event.IConfigurationChanged;
 import no.runsafe.framework.output.IOutput;
@@ -9,11 +8,10 @@ import no.runsafe.framework.timer.Worker;
 
 public abstract class DataImporter extends Worker<String, Boolean> implements IConfigurationChanged
 {
-	public DataImporter(IScheduler scheduler, IOutput output, ConfigurationEngine engine)
+	public DataImporter(IScheduler scheduler, IOutput output)
 	{
 		super(scheduler);
 		console = output;
-		this.engine = engine;
 	}
 
 	@Override
@@ -28,7 +26,7 @@ public abstract class DataImporter extends Worker<String, Boolean> implements IC
 		synchronized (sync)
 		{
 			configuration.setConfigValue("imported.".concat(getName()), true);
-			engine.save();
+			configuration.save();
 		}
 	}
 
@@ -45,7 +43,6 @@ public abstract class DataImporter extends Worker<String, Boolean> implements IC
 	abstract void Import();
 
 	protected final IOutput console;
-	private final ConfigurationEngine engine;
 	private IConfiguration configuration;
 
 	static final Object sync = new Object();

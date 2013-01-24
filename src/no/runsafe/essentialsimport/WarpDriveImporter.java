@@ -1,6 +1,7 @@
 package no.runsafe.essentialsimport;
 
 import no.runsafe.framework.RunsafePlugin;
+import no.runsafe.framework.configuration.ConfigurationEngine;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeServer;
@@ -12,9 +13,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class WarpDriveImporter extends DataImporter
 {
-	public WarpDriveImporter(IScheduler scheduler, IOutput output, RunsafeServer server)
+	public WarpDriveImporter(IScheduler scheduler, IOutput output, ConfigurationEngine engine, RunsafeServer server)
 	{
-		super(scheduler, output);
+		super(scheduler, output, engine);
 		warpRepository = ((RunsafePlugin) server.getPlugin("WarpDrive")).getComponent(WarpRepository.class);
 		essentials = new EssentialsFileReader(output);
 	}

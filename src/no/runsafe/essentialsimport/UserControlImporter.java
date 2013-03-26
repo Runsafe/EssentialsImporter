@@ -88,6 +88,13 @@ public class UserControlImporter extends DataImporter
 				console.write(String.format("Failed importing %s: %s", playerData.getName(), ExceptionUtils.getFullStackTrace(e)));
 				e.printStackTrace();
 			}
+			try
+			{
+				Thread.sleep(1);
+			}
+			catch (InterruptedException e)
+			{
+			}
 		}
 		console.write(String.format("Completed import of %d players into the UserControl database.", count));
 	}

@@ -41,6 +41,7 @@ public class EssentialsFileReader implements Iterable<YamlConfiguration>, Iterat
 
 		try
 		{
+			playerData = new YamlConfiguration();
 			playerData.load(files[index]);
 			index++;
 		}
@@ -56,13 +57,12 @@ public class EssentialsFileReader implements Iterable<YamlConfiguration>, Iterat
 			index++;
 			return null;
 		}
-		index++;
 		return playerData;
 	}
 
 	public File getFile()
 	{
-		if (index == 0)
+		if (index == 0 || index > files.length)
 			return null;
 		return files[index - 1];
 	}
@@ -73,7 +73,7 @@ public class EssentialsFileReader implements Iterable<YamlConfiguration>, Iterat
 	}
 
 	IOutput console;
-	YamlConfiguration playerData = new YamlConfiguration();
+	YamlConfiguration playerData;
 	File sourceDir = new File("plugins/Essentials/userdata");
 	File[] files = null;
 	int index = 0;

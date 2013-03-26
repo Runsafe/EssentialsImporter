@@ -1,7 +1,6 @@
 package no.runsafe.essentialsimport;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.configuration.ConfigurationEngine;
 import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.RunsafeServer;
@@ -63,6 +62,7 @@ public class WarpDriveImporter extends DataImporter
 					);
 				}
 				else
+				{
 					warpRepository.Persist(
 						playerName,
 						home,
@@ -76,8 +76,16 @@ public class WarpDriveImporter extends DataImporter
 							(float) homeDetails.getDouble("pitch")
 						)
 					);
+				}
 			}
 			count++;
+			try
+			{
+				Thread.sleep(1);
+			}
+			catch (InterruptedException e)
+			{
+			}
 		}
 		console.write(String.format("Completed import of %d players into the WarpDrive database.", count));
 	}

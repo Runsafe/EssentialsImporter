@@ -5,11 +5,8 @@ import no.runsafe.framework.output.IOutput;
 import no.runsafe.framework.server.RunsafeServer;
 import no.runsafe.framework.server.player.RunsafePlayer;
 import no.runsafe.framework.timer.IScheduler;
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class UserControlImporter extends DataImporter
@@ -30,16 +27,6 @@ public class UserControlImporter extends DataImporter
 	@Override
 	void Import()
 	{
-		PreparedStatement update = database.prepare(
-			"INSERT INTO player_db (`name`,`joined`,`login`,`logout`,`ip`,`banned`,`ban_reason`) VALUES (?,?,?,?,INET_ATON(?),?,?)" +
-				"ON DUPLICATE KEY UPDATE " +
-				"`joined`=VALUES(`joined`)," +
-				"`login`=VALUES(`login`), " +
-				"`logout`=VALUES(`logout`)," +
-				"`ip`=VALUES(`ip`)," +
-				"`banned`=VALUES(`banned`)," +
-				"`ban_reason`=VALUES(`ban_reason`)"
-		);
 		if (!essentials.hasNext())
 		{
 			console.write(String.format("Essentials userdata not found, skipping!"));
@@ -71,23 +58,20 @@ public class UserControlImporter extends DataImporter
 						banReason = null;
 				}
 			}
-			try
-			{
-				update.setString(1, playerName);
-				update.setTimestamp(2, login);
-				update.setTimestamp(3, login);
-				update.setTimestamp(4, logout);
-				update.setString(5, ip);
-				update.setTimestamp(6, banReason == null ? null : logout);
-				update.setString(7, banReason);
-				update.executeUpdate();
-				count++;
-			}
-			catch (SQLException e)
-			{
-				console.write(String.format("Failed importing %s: %s", playerData.getName(), ExceptionUtils.getFullStackTrace(e)));
-				e.printStackTrace();
-			}
+			database.Update(
+				"INSERT INTO player_db (`name`,`joined`,`login`,`logout`,`ip`,`banned`,`ban_reason`) VALUES (?,?,?,?,INET_ATON(?),?,?)" +
+					"ON DUPLICATE KEY UPDATE " +
+					"`joined`=VALUES(`joined`)," +
+					"`login`=VALUES(`login`), " +
+					"`logout`=VALUES(`logout`)," +
+					"`ip`=VALUES(`ip`)," +
+					"`banned`=VALUES(`banned`)," +
+					"`ban_reason`=VALUES(`ban_reason`)",
+				playerName, login, login, logout, ip,
+				banReason == null ? null : logout,
+				banReason
+			);
+			count++;
 			try
 			{
 				Thread.sleep(1);

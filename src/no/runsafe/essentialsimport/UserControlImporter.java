@@ -1,10 +1,10 @@
 package no.runsafe.essentialsimport;
 
-import no.runsafe.framework.database.IDatabase;
-import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.server.RunsafeServer;
-import no.runsafe.framework.server.player.RunsafePlayer;
-import no.runsafe.framework.timer.IScheduler;
+import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.database.IDatabase;
+import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.sql.Timestamp;

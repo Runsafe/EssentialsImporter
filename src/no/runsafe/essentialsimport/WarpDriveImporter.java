@@ -1,11 +1,11 @@
 package no.runsafe.essentialsimport;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.server.RunsafeLocation;
-import no.runsafe.framework.server.RunsafeServer;
-import no.runsafe.framework.server.RunsafeWorld;
-import no.runsafe.framework.timer.IScheduler;
+import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.minecraft.RunsafeLocation;
+import no.runsafe.framework.minecraft.RunsafeServer;
+import no.runsafe.framework.minecraft.RunsafeWorld;
 import no.runsafe.warpdrive.database.WarpRepository;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;

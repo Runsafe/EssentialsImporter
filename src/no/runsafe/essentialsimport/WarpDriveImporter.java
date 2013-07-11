@@ -90,6 +90,6 @@ public class WarpDriveImporter extends DataImporter
 		console.write(String.format("Completed import of %d players into the WarpDrive database.", count));
 	}
 
-	WarpRepository warpRepository;
-	EssentialsFileReader essentials;
+	private final WarpRepository warpRepository;
+	private final EssentialsFileReader essentials;
 }

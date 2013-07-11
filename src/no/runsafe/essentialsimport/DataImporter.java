@@ -45,5 +45,5 @@ public abstract class DataImporter extends Worker<String, Boolean> implements IC
 	protected final IOutput console;
 	private IConfiguration configuration;
 
-	static final Object sync = new Object();
+	private static final Object sync = new Object();
 }

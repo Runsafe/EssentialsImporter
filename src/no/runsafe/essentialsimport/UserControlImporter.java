@@ -54,7 +54,7 @@ public class UserControlImporter extends DataImporter
 				if (banReason != null)
 				{
 					RunsafePlayer player = RunsafeServer.Instance.getPlayer(playerName);
-					if (player != null && !player.isBanned())
+					if (player != null && player.isNotBanned())
 						banReason = null;
 				}
 			}
@@ -83,6 +83,6 @@ public class UserControlImporter extends DataImporter
 		console.write(String.format("Completed import of %d players into the UserControl database.", count));
 	}
 
-	private IDatabase database;
-	private EssentialsFileReader essentials;
+	private final IDatabase database;
+	private final EssentialsFileReader essentials;
 }

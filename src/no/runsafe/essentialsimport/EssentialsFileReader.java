@@ -30,6 +30,7 @@ public class EssentialsFileReader implements Iterable<YamlConfiguration>, Iterat
 		if (files == null)
 			files = sourceDir.listFiles();
 
+		assert files != null;
 		return index < files.length;
 	}
 
@@ -39,6 +40,7 @@ public class EssentialsFileReader implements Iterable<YamlConfiguration>, Iterat
 		if (files == null)
 			files = sourceDir.listFiles();
 
+		YamlConfiguration playerData;
 		try
 		{
 			playerData = new YamlConfiguration();
@@ -72,9 +74,8 @@ public class EssentialsFileReader implements Iterable<YamlConfiguration>, Iterat
 	{
 	}
 
-	IOutput console;
-	YamlConfiguration playerData;
-	File sourceDir = new File("plugins/Essentials/userdata");
-	File[] files = null;
-	int index = 0;
+	private final IOutput console;
+	private final File sourceDir = new File("plugins/Essentials/userdata");
+	private File[] files = null;
+	private int index = 0;
 }

@@ -1,5 +1,6 @@
 package no.runsafe.essentialsimport;
 
+import no.runsafe.framework.api.IConsole;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.database.IDatabase;
@@ -11,7 +12,7 @@ import java.sql.Timestamp;
 
 public class UserControlImporter extends DataImporter
 {
-	public UserControlImporter(IScheduler scheduler, IOutput output, IDatabase database)
+	public UserControlImporter(IScheduler scheduler, IConsole output, IDatabase database)
 	{
 		super(scheduler, output);
 		this.database = database;
@@ -29,10 +30,10 @@ public class UserControlImporter extends DataImporter
 	{
 		if (!essentials.hasNext())
 		{
-			console.write(String.format("Essentials userdata not found, skipping!"));
+			console.logInformation("Essentials userdata not found, skipping!");
 			return;
 		}
-		console.outputToConsole("Importing user data from Essentials into Runsafe UserControl..");
+		console.logInformation("Importing user data from Essentials into Runsafe UserControl..");
 		int count = 0;
 		for (YamlConfiguration playerData : essentials)
 		{
@@ -80,7 +81,7 @@ public class UserControlImporter extends DataImporter
 			{
 			}
 		}
-		console.write(String.format("Completed import of %d players into the UserControl database.", count));
+		console.logInformation("Completed import of %d players into the UserControl database.", count);
 	}
 
 	private final IDatabase database;

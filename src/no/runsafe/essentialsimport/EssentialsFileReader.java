@@ -1,6 +1,6 @@
 package no.runsafe.essentialsimport;
 
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IConsole;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 public class EssentialsFileReader implements Iterable<YamlConfiguration>, Iterator<YamlConfiguration>
 {
-	public EssentialsFileReader(IOutput output)
+	public EssentialsFileReader(IConsole output)
 	{
 		console = output;
 	}
@@ -49,13 +49,13 @@ public class EssentialsFileReader implements Iterable<YamlConfiguration>, Iterat
 		}
 		catch (IOException e)
 		{
-			console.write(String.format("Error reading file %s", files[index].getName()));
+			console.logInformation("Error reading file %s", files[index].getName());
 			index++;
 			return null;
 		}
 		catch (InvalidConfigurationException e)
 		{
-			console.write(String.format("Error reading file %s - %s", files[index].getName(), e.getMessage()));
+			console.logInformation("Error reading file %s - %s", files[index].getName(), e.getMessage());
 			index++;
 			return null;
 		}
@@ -74,7 +74,7 @@ public class EssentialsFileReader implements Iterable<YamlConfiguration>, Iterat
 	{
 	}
 
-	private final IOutput console;
+	private final IConsole console;
 	private final File sourceDir = new File("plugins/Essentials/userdata");
 	private File[] files = null;
 	private int index = 0;

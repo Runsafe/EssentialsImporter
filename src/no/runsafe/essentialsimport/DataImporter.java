@@ -1,14 +1,14 @@
 package no.runsafe.essentialsimport;
 
 import no.runsafe.framework.api.IConfiguration;
-import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
 import no.runsafe.framework.timer.Worker;
 
 public abstract class DataImporter extends Worker<String, Boolean> implements IConfigurationChanged
 {
-	public DataImporter(IScheduler scheduler, IOutput output)
+	public DataImporter(IScheduler scheduler, IConsole output)
 	{
 		super(scheduler);
 		console = output;
@@ -42,7 +42,7 @@ public abstract class DataImporter extends Worker<String, Boolean> implements IC
 
 	abstract void Import();
 
-	protected final IOutput console;
+	protected final IConsole console;
 	private IConfiguration configuration;
 
 	private static final Object sync = new Object();

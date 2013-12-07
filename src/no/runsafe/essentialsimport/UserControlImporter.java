@@ -1,11 +1,10 @@
 package no.runsafe.essentialsimport;
 
 import no.runsafe.framework.api.IConsole;
-import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.database.IDatabase;
+import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.minecraft.RunsafeServer;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.sql.Timestamp;
@@ -54,7 +53,7 @@ public class UserControlImporter extends DataImporter
 				banReason = playerData.getString("ban.reason");
 				if (banReason != null)
 				{
-					RunsafePlayer player = RunsafeServer.Instance.getPlayer(playerName);
+					IPlayer player = RunsafeServer.Instance.getPlayer(playerName);
 					if (player != null && player.isNotBanned())
 						banReason = null;
 				}

@@ -3,18 +3,19 @@ package no.runsafe.essentialsimport;
 import no.runsafe.framework.RunsafePlugin;
 import no.runsafe.framework.api.IConsole;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.minecraft.RunsafeLocation;
-import no.runsafe.framework.minecraft.RunsafeServer;
 import no.runsafe.warpdrive.database.WarpRepository;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class WarpDriveImporter extends DataImporter
 {
-	public WarpDriveImporter(IScheduler scheduler, IConsole output, RunsafeServer server)
+	public WarpDriveImporter(IScheduler scheduler, IConsole output, IServer server)
 	{
 		super(scheduler, output);
+		this.server = server;
 		warpRepository = ((RunsafePlugin) server.getPlugin("WarpDrive")).getComponent(WarpRepository.class);
 		essentials = new EssentialsFileReader(output);
 	}
@@ -49,7 +50,7 @@ public class WarpDriveImporter extends DataImporter
 			for (String home : homes.getKeys(false))
 			{
 				ConfigurationSection homeDetails = homes.getConfigurationSection(home);
-				IWorld world = RunsafeServer.Instance.getWorld(homeDetails.getString("world"));
+				IWorld world = server.getWorld(homeDetails.getString("world"));
 				if (world == null)
 				{
 					console.logInformation(
@@ -90,4 +91,5 @@ public class WarpDriveImporter extends DataImporter
 
 	private final WarpRepository warpRepository;
 	private final EssentialsFileReader essentials;
+	private final IServer server;
 }

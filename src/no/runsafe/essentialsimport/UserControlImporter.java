@@ -2,19 +2,20 @@ package no.runsafe.essentialsimport;
 
 import no.runsafe.framework.api.IConsole;
 import no.runsafe.framework.api.IScheduler;
+import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.database.IDatabase;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.RunsafeServer;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.sql.Timestamp;
 
 public class UserControlImporter extends DataImporter
 {
-	public UserControlImporter(IScheduler scheduler, IConsole output, IDatabase database)
+	public UserControlImporter(IScheduler scheduler, IConsole output, IDatabase database, IServer server)
 	{
 		super(scheduler, output);
 		this.database = database;
+		this.server = server;
 		essentials = new EssentialsFileReader(output);
 	}
 
@@ -53,7 +54,7 @@ public class UserControlImporter extends DataImporter
 				banReason = playerData.getString("ban.reason");
 				if (banReason != null)
 				{
-					IPlayer player = RunsafeServer.Instance.getPlayer(playerName);
+					IPlayer player = server.getPlayer(playerName);
 					if (player != null && player.isNotBanned())
 						banReason = null;
 				}
@@ -85,4 +86,5 @@ public class UserControlImporter extends DataImporter
 
 	private final IDatabase database;
 	private final EssentialsFileReader essentials;
+	private final IServer server;
 }

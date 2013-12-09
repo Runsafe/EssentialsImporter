@@ -1,6 +1,6 @@
 package no.runsafe.essentialsimport;
 
-import no.runsafe.framework.api.IConsole;
+import no.runsafe.framework.api.log.IConsole;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 

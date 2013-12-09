@@ -1,9 +1,9 @@
 package no.runsafe.essentialsimport;
 
-import no.runsafe.framework.api.IConsole;
 import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.database.IDatabase;
+import no.runsafe.framework.api.log.IConsole;
 import no.runsafe.framework.api.player.IPlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 

@@ -5,7 +5,7 @@ import no.runsafe.framework.RunsafeConfigurablePlugin;
 public class Plugin extends RunsafeConfigurablePlugin
 {
 	@Override
-	protected void PluginSetup()
+	protected void pluginSetup()
 	{
 		addComponent(UserControlImporter.class);
 		addComponent(WarpDriveImporter.class);

@@ -5,7 +5,6 @@ import no.runsafe.framework.api.IScheduler;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.IWorld;
 import no.runsafe.framework.api.log.IConsole;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.warpdrive.database.WarpRepository;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -66,8 +65,7 @@ public class WarpDriveImporter extends DataImporter
 						playerName,
 						home,
 						false,
-						new RunsafeLocation(
-							world,
+						world.getLocation(
 							homeDetails.getDouble("x"),
 							homeDetails.getDouble("y"),
 							homeDetails.getDouble("z"),

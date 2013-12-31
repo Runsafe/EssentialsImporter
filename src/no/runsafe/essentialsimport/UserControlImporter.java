@@ -59,7 +59,7 @@ public class UserControlImporter extends DataImporter
 						banReason = null;
 				}
 			}
-			database.Update(
+			database.update(
 				"INSERT INTO player_db (`name`,`joined`,`login`,`logout`,`ip`,`banned`,`ban_reason`) VALUES (?,?,?,?,INET_ATON(?),?,?)" +
 					"ON DUPLICATE KEY UPDATE " +
 					"`joined`=VALUES(`joined`)," +
